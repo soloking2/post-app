@@ -1,0 +1,51 @@
+<div class="post-container">
+    <div class="post-container-title">
+        All Posts
+    </div>
+  @if(posts$ | async) {
+    <div class="post-item-btn">
+        <button mat-raised-button type="button" color="primary" (click)="openDialog()">Add Post</button>
+    </div>
+  <table
+    mat-table
+    aria-label="Posts table"
+    [dataSource]="postTableDataSource"
+    class="posts-table mat-elevation-z8"
+  >
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let post">{{ post.title }}</td>
+    </ng-container>
+    <ng-container matColumnDef="body">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let post" class="body-wrap">{{ post.body }}</td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell (click)="$event.stopPropagation()">
+        <button mat-icon-button [matMenuTriggerFor]="postActionMenu">
+          ...
+        </button>
+        <mat-menu #postActionMenu="matMenu" xPosition="before">
+          <ng-template matMenuContent>
+            <button mat-menu-item (click)="openDialog(element.action)">Edit</button>
+
+            <button mat-menu-item (click)="deletePost(element.action)">Delete</button>
+          </ng-template>
+        </mat-menu>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let posts; columns: displayColumns"></tr>
+  </table>
+  <mat-paginator
+    [length]="POST_TABLE_DATA.length"
+    [pageSize]="20"
+    [pageSizeOptions]="[20, 50, 100]"
+  >
+  </mat-paginator>
+
+  } @else {
+  <div>Loading Posts ...</div>
+  }
+</div>

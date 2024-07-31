@@ -1,0 +1,19 @@
+.post-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 20px;
+    padding: 20px 30px;
+}
+
+.post-item-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.post-container-title {
+    font-size: 1.5rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+}

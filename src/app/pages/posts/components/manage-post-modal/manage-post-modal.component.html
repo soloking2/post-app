@@ -1,0 +1,51 @@
+<div>
+  <div class="post-modal-title">
+    {{ modalTitle }}
+  </div>
+  <mat-dialog-content [formGroup]="postForm">
+    <div class="post-modal">
+      <mat-form-field>
+        <input matInput placeholder="Post title" formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="Description"
+          rows="3"
+          formControlName="body"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  @if (apiError.status) {
+  <div>
+    <span>{{ apiError.message }}</span>
+  </div>
+  }
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="closeModal()">Close</button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="postForm.invalid || isSetingUpPost"
+      (click)="postForm.valid && onSubmit()"
+    >
+    <div style="display: flex; gap: 5px">
+        Save
+        @if(isSetingUpPost) {
+            <mat-progress-spinner
+                  color="primary"
+                  mode="indeterminate"
+                  diameter="20"
+                  strokeWidth="3"
+                ></mat-progress-spinner>
+        }
+
+    </div>
+    </button>
+  </mat-dialog-actions>
+</div>
