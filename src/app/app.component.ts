@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PostService } from './pages/posts/services/post.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'pa-root',
@@ -11,7 +12,12 @@ import { PostService } from './pages/posts/services/post.service';
 })
 export class AppComponent {
   title = 'posts-app';
-  constructor(private postservice: PostService) {
+  constructor(private postservice: PostService,
+    private meta: Meta,
+    private titleService: Title
+  ) {
     this.postservice.getAllPosts();
+    this.titleService.setTitle(this.title)
+    this.meta.updateTag({ name: 'description', content: 'A post app' });
   }
 }
