@@ -9,7 +9,7 @@ import { Observable, tap } from 'rxjs';
 import { SharedModule } from '../../shared/shared.module';
 import { IPost, IPostTable } from './models/post.model';
 import { PostService } from './services/post.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ManagePostModalComponent } from './components/manage-post-modal/manage-post-modal.component';
